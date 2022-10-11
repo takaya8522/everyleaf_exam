@@ -57,4 +57,5 @@ group :development, :test do
   # 省略
   gem 'rspec-rails'
   gem 'rexml'
+  gem 'factory_bot_rails'
 end
