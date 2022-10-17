@@ -59,3 +59,5 @@ group :development, :test do
   gem 'rexml'
   gem 'factory_bot_rails'
 end
+
+gem 'kaminari'
