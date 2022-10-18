@@ -1,8 +1,28 @@
 <h1><%= Task.human_attribute_name(:new_task) %></h1>
 
-<%= render 'form', task: @task %>
-
 <%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div>
+      <h2><%= @task.errors.count %>件のエラーが発生しました</h2>
+
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+
   <div>
     <%= form.submit Task.human_attribute_name(:create_task),id: 'create-task' %>
   </div>
