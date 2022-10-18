@@ -1,7 +1,7 @@
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div>
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= task.errors.count %>件のエラーが発生しました</h2>
 
       <ul>
         <% task.errors.full_messages.each do |message| %>
@@ -22,7 +22,7 @@
   </div>
 
   <div>
-    <%= form.submit 'Create Task' %>
+    <%= form.submit Task.human_attribute_name(:create_task) %>
   </div>
   
 <% end %>
