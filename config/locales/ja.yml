@@ -29,6 +29,7 @@ ja:
         task_created: タスクを登録しました
         task_updated: タスクを更新しました
         task_destroyed: タスクを削除しました
+        update_user: 更新する
   date:
     abbr_day_names:
     - 日
