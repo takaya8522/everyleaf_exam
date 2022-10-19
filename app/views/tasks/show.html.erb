@@ -12,7 +12,22 @@
 
 <p>
   <strong><%= Task.human_attribute_name(:created_at) %>:</strong>
-  <%= @task.created_at %>
+  <%= @task.created_at.strftime('%Y/%m/%d %H:%M') %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:deadline_on) %>:</strong>
+  <%= @task.deadline_on.strftime('%Y/%m/%d') %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:priority) %>:</strong>
+  <%= @task.priority %>
+</p>
+
+<p>
+  <strong><%= Task.human_attribute_name(:status) %>:</strong>
+  <%= @task.status %>
 </p>
 
 <%= link_to Task.human_attribute_name(:edit), edit_task_path(@task), id: 'edit-task' %> |
