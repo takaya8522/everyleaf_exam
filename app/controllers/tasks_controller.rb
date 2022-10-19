@@ -6,9 +6,9 @@ class TasksController < ApplicationController
 
     # 終了期限/優先度ソート機能
     if params[:sort_deadline_on]
-      @tasks = Task.page(params[:page]).sort_deadline_on
+      @tasks = Task.page(params[:page]).sort_deadline_on.sort_created_at
     elsif params[:sort_priority]
-      @tasks = Task.page(params[:page]).sort_priority
+      @tasks = Task.page(params[:page]).sort_priority.sort_created_at
     end
 
     # 検索機能
