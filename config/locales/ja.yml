@@ -29,6 +29,10 @@ ja:
         task_created: タスクを登録しました
         task_updated: タスクを更新しました
         task_destroyed: タスクを削除しました
+        deadline_on:  終了期限
+        priority: 優先度
+        status: ステータス
+        search: 検索
   date:
     abbr_day_names:
     - 日
