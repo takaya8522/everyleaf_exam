@@ -33,6 +33,10 @@ ja:
         priority: 優先度
         status: ステータス
         search: 検索
+        sign_up: アカウント登録
+        sign_in: ログイン
+        my_account: アカウント詳細
+        sign_out: ログアウト
   date:
     abbr_day_names:
     - 日
