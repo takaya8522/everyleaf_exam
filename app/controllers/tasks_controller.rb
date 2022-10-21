@@ -2,26 +2,35 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
   def index
-    @tasks = Task.page(params[:page]).sort_created_at
+    @tasks = Task.all
 
     # 終了期限/優先度ソート機能
     if params[:sort_deadline_on]
-      @tasks = Task.page(params[:page]).sort_deadline_on.sort_created_at
+      @tasks = @tasks.sort_deadline_on
     elsif params[:sort_priority]
-      @tasks = Task.page(params[:page]).sort_priority.sort_created_at
+      @tasks = @tasks.sort_priority
     end
 
     # 検索機能
     if params[:search].present?
-      if params[:search][:status].present? && params[:search][:title].present?
-        @tasks = Task.page(params[:page]).search_status(params[:search][:status]).search_title(params[:search][:title])
-      elsif params[:search][:status].present?
-        @tasks = Task.page(params[:page]).search_status(params[:search][:status])
-      elsif params[:search][:title].present?
-        @tasks = Task.page(params[:page]).search_title(params[:search][:title])
-      end 
+      @tasks = @tasks
+        .search_status(params[:search][:status])
+        .search_title(params[:search][:title])
     end
-    
+
+    # ページネーション
+    @tasks = @tasks.page(params[:page]).default_order
+
+    # 下記はmodelへ記載
+    # if params[:search].present?
+    #   if params[:search][:status].present? && params[:search][:title].present?
+    #     @tasks = @tasks.search_status(params[:search][:status]).search_title(params[:search][:title])
+    #   elsif params[:search][:status].present?
+    #     @tasks = @tasks.search_status(params[:search][:status])
+    #   elsif params[:search][:title].present?
+    #     @tasks = @tasks.search_title(params[:search][:title])
+    #   end 
+    # end
   end
 
   def new
