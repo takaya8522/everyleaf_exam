@@ -11,6 +11,9 @@
 
   <body>
     <p id="notice"><%= notice %></p>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
     <li><%= link_to Task.human_attribute_name(:tasks_index_nav), tasks_path , id: "tasks-index"%></li>
     <li><%= link_to Task.human_attribute_name(:new_task_nav), new_task_path , id: "new-task"%></li>
     <%= yield %>
