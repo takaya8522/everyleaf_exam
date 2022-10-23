@@ -1,4 +1,4 @@
-<h1>ユーザー登録ページ</h1>
+<h1>ユーザ登録ページ</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>エラーが<%= pluralize(@user.errors.count, "件") %>発生しました</h2>
@@ -32,7 +32,7 @@
     <%= f.check_box :admin ,{}, "true", "false" %>
   </div>
   <div>
-    <%= f.submit "登録する" %>
+    <%= f.submit "登録する" id: 'create-user' %>
   </div>
 <% end %>
 

@@ -38,8 +38,8 @@ ja:
         my_account: アカウント詳細
         sign_out: ログアウト
       user:
-        users_index: ユーザ一覧
-        add_user: ユーザを追加する
+        users_index: ユーザ一覧ページ
+        add_user: ユーザを登録する
         title: タイトル
         email: メールアドレス
         admin: 管理者権限
@@ -53,7 +53,7 @@ ja:
         user_deleted: ユーザーを削除しました
         name: 名前
         password: パスワード
-        password_confirmation: パスワード（確認用）
+        password_confirmation: パスワード（確認）
         login_required: ログインしてください
         logout_required: ログアウトしてください
         correct_user: アクセス権がありません

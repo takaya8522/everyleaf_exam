@@ -12,22 +12,22 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <div>
-    <%= f.label :name %><br>
+    <%= f.label :名前 %><br>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :email %><br>
+    <%= f.label :メールアドレス %><br>
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.label :password %><br>
+    <%= f.label :パスワード %><br>
     <%= f.password_field :password %>
   </div>
   <div>
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :パスワード（確認） %><br>
     <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= f.submit "Create my account" %>
+    <%= f.submit "登録する" %>
   </div>
 <% end %>
