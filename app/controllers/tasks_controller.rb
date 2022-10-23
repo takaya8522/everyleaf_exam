@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
 
     # 終了期限/優先度ソート機能
     if params[:sort_deadline_on]
@@ -40,6 +40,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_created)
     else

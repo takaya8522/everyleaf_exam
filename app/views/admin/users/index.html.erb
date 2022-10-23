@@ -1,0 +1,26 @@
+<h1><%= User.human_attribute_name(:users_index) %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= User.human_attribute_name(:title) %></th>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= User.human_attribute_name(:admin) %></th>
+      <th><%= User.human_attribute_name(:tasks_number) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin %></td>
+        <td><%= user.tasks.count %></td>
+        <td><%= link_to User.human_attribute_name(:show), admin_user_path(user) ,class: 'show-user' %></td>
+        <td><%= link_to User.human_attribute_name(:edit), edit_admin_user_path(user),class: 'edit-user' %></td>
+        <td><%= link_to User.human_attribute_name(:destroy), admin_user_path(user) , class: 'destroy-user', method: :delete, data: { confirm: User.human_attribute_name(:are_you_sure?) } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

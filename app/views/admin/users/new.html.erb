@@ -1,0 +1,39 @@
+<h1>ユーザー登録ページ</h1>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <div>
+    <%= f.label :名前  %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :メールアドレス %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :パスワード %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :パスワード（確認） %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.label :管理者権限 %><br>
+    <%= f.check_box :admin ,{}, "true", "false" %>
+  </div>
+  <div>
+    <%= f.submit "登録する" %>
+  </div>
+<% end %>
+
+<%= link_to Task.human_attribute_name(:back), users_path ,id: 'back' %>

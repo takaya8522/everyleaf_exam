@@ -15,6 +15,8 @@
     <% end %>
 
     <% if logged_in? %>
+      <li><%= link_to User.human_attribute_name(:users_index), admin_users_path , id: "users-index"%></li>
+      <li><%= link_to User.human_attribute_name(:add_user), new_admin_user_path , id: "add-user"%></li>
       <li><%= link_to Task.human_attribute_name(:tasks_index_nav), tasks_path , id: "tasks-index"%></li>
       <li><%= link_to Task.human_attribute_name(:new_task_nav), new_task_path , id: "new-task"%></li>
       <li><%= link_to Task.human_attribute_name(:my_account), user_path(current_user.id), id: "my-account" %></li>
