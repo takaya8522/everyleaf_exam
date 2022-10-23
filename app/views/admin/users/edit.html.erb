@@ -1,7 +1,7 @@
 <h1>ユーザー編集ページ</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <h2>エラーが<%= pluralize(@user.errors.count, "件") %>発生しました</h2>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>

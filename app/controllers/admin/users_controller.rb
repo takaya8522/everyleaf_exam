@@ -1,8 +1,9 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  # before_action :if_not_admin, except: [:index]
-  # before_action :correct_user, only: [:show]
-  skip_before_action :login_required, only: [:new, :create]
+  before_action :if_not_admin, except: [:index]
+  skip_before_action :login_required, :logout_required
+  before_action :destroy_if_only_one_admin, only: [:destroy]
+  before_action :update_if_only_one_admin, only: [:update]
 
   def index
     @users = User.all
@@ -15,7 +16,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_user_path(@user.id), notice: User.human_attribute_name(:user_created)
+      redirect_to admin_users_path, notice: User.human_attribute_name(:user_created)
     else
       render :new
     end
@@ -47,15 +48,18 @@ class Admin::UsersController < ApplicationController
   end
 
   def if_not_admin
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path, notice: User.human_attribute_name(:admin_user) unless current_user.admin?
   end
-
-  # def correct_user
-  #   @user = User.find(params[:id])
-  #   redirect_to current_user unless current_user?(@user)
-  # end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def destroy_if_only_one_admin
+    redirect_to admin_users_path, notice: User.human_attribute_name(:admin_destroy) if User.where(admin: 'true').count == 1
+  end
+
+  def update_if_only_one_admin
+    redirect_to admin_users_path, notice: User.human_attribute_name(:admin_update) if User.where(admin: 'true').count == 1
   end
 end

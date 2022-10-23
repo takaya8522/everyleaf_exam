@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[ show edit update ]
   before_action :correct_user, only: [:show]
   skip_before_action :login_required, only: [:new, :create]
-  before_action :set_user, only: %i[ show edit update ]
+  skip_before_action :logout_required, except: [:new, :create]
 
   def new
     @user = User.new
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
-    redirect_to current_user unless current_user?(@user)
+    user_id = User.find(params[:id]).id
+    redirect_to current_user, notice: User.human_attribute_name(:correct_user) unless current_user?(user_id)
   end
 end

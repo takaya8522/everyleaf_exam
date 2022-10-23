@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :logout_required
+  before_action :correct_user, only: [:show, :edit]
 
   def index
     @tasks = current_user.tasks
@@ -75,5 +77,10 @@ class TasksController < ApplicationController
 
     def task_params
       params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+    end
+
+    def correct_user
+      user_id = Task.find(params[:id]).user_id
+      redirect_to tasks_path, notice: User.human_attribute_name(:correct_user)  unless current_user?(user_id)
     end
 end

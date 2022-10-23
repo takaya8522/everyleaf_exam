@@ -6,4 +6,7 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
+  # enum管理者権限用
+  enum admin: { あり: true, なし: false }
 end
