@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.preload(:tasks).each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>

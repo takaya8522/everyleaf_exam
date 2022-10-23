@@ -52,6 +52,8 @@ ja:
         user_updated: ユーザーを更新しました
         user_deleted: ユーザーを削除しました
         name: 名前
+        password: パスワード
+        password_confirmation: パスワード（確認用）
   date:
     abbr_day_names:
     - 日

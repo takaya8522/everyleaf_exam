@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_with(model: @user, local: true) do |f| %>
+<%= form_with(model: [:admin, @user], local: true) do |f| %>
   <div>
     <%= f.label :名前  %><br>
     <%= f.text_field :name %>
@@ -36,4 +36,4 @@
   </div>
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), users_path ,id: 'back' %>
+<%= link_to Task.human_attribute_name(:back), admin_users_path ,id: 'back' %>
