@@ -42,7 +42,7 @@ ja:
         add_user: ユーザを登録する
         title: タイトル
         email: メールアドレス
-        admin: 管理者権限
+        administration: 管理者権限
         tasks_number: 登録タスク数
         show: 詳細
         edit: 編集
@@ -61,6 +61,13 @@ ja:
         admin_user: 管理者以外はアクセスできません
         admin_destroy: 管理者権限を持つアカウントが0件になるため削除できません
         admin_update: 管理者権限を持つアカウントが0件になるため更新できません
+        admin:
+          true: あり
+          false: なし
+      admin:
+        user:
+          true: あり
+          false: なし
   date:
     abbr_day_names:
     - 日

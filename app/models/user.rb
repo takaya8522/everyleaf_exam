@@ -8,5 +8,5 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
 
   # enum管理者権限用
-  enum admin: { あり: true, なし: false }
+  # enum admin: { あり: true, なし: false }
 end

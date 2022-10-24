@@ -29,7 +29,7 @@
   </div>
   <div>
     <%= f.label :管理者権限 %><br>
-    <%= f.check_box :admin ,{}, "あり", "なし" %>
+    <%= f.check_box :admin ,{}, true, false %>
   </div>
   <div>
     <%= f.submit "更新する", id: 'update-user' %>

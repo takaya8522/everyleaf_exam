@@ -5,7 +5,7 @@
     <tr>
       <th><%= User.human_attribute_name(:name) %></th>
       <th><%= User.human_attribute_name(:email) %></th>
-      <th><%= User.human_attribute_name(:admin) %></th>
+      <th><%= User.human_attribute_name(:administration) %></th>
       <th><%= User.human_attribute_name(:tasks_number) %></th>
     </tr>
   </thead>
@@ -15,7 +15,11 @@
       <tr>
         <td><%= user.name  %></td>
         <td><%= user.email %></td>
-        <td><%= user.admin %></td>
+        <% if user.admin == true  %>
+          <td><%= "あり" %></td>
+        <% else %>
+          <td><%= "なし" %></td>
+        <% end %>
         <td><%= user.tasks.count %></td>
         <td><%= link_to User.human_attribute_name(:show), admin_user_path(user) ,class: 'show-user' %></td>
         <td><%= link_to User.human_attribute_name(:edit), edit_admin_user_path(user),class: 'edit-user' %></td>

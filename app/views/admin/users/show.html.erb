@@ -9,8 +9,12 @@
   <%= @user.email %>
 </p>
 <p>
-  <strong><%= User.human_attribute_name(:admin) %>:</strong>
-  <%= @user.admin %>
+  <strong><%= User.human_attribute_name(:administration) %>:</strong>
+  <% if @user.admin == true  %>
+    <%= "あり" %>
+  <% else %>
+    <%= "なし" %>
+  <% end %>
 </p>
 
 <table>
