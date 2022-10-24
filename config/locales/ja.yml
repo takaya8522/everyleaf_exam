@@ -58,8 +58,8 @@ ja:
         logout_required: ログアウトしてください
         correct_user: アクセス権がありません
         admin_user: 管理者以外はアクセスできません
-        admin_destroy: 管理者が0人になるため削除できません
-        admin_update: 管理者が0人になるため権限を変更できません
+        admin_destroy: 管理者権限を持つアカウントが0件になるため削除できません
+        admin_update: 管理者権限を持つアカウントが0件になるため更新できません
   date:
     abbr_day_names:
     - 日
