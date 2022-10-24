@@ -48,14 +48,15 @@ ja:
         edit: 編集
         destroy: 削除
         are_you_sure?: 本当に削除してもよろしいですか？
-        user_created: ユーザーを登録しました
-        user_updated: ユーザーを更新しました
-        user_deleted: ユーザーを削除しました
+        user_created: ユーザを登録しました
+        user_updated: ユーザを更新しました
+        user_deleted: ユーザを削除しました
         name: 名前
         password: パスワード
         password_confirmation: パスワード（確認）
         login_required: ログインしてください
         logout_required: ログアウトしてください
+        logged_in: ログインしました
         correct_user: 本人以外アクセスできません
         admin_user: 管理者以外はアクセスできません
         admin_destroy: 管理者権限を持つアカウントが0件になるため削除できません
@@ -158,7 +159,7 @@ ja:
       other_than: は%{count}以外の値にしてください
       present: は入力しないでください
       required: を入力してください
-      taken: はすでに存在します
+      taken: はすでに使用されています
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください

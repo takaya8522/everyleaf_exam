@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: User.human_attribute_name(:user_updated)
     else
       render :new
     end
