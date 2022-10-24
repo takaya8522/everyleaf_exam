@@ -56,10 +56,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy_if_only_one_admin
-    redirect_to admin_users_path, notice: User.human_attribute_name(:admin_destroy) if User.where(admin: 'true').count == 1
+    if User.where(admin: 'true').count == 1
+      redirect_to admin_users_path, notice: User.human_attribute_name(:admin_destroy)
+    end
   end
 
   def update_if_only_one_admin
-    redirect_to admin_users_path, notice: User.human_attribute_name(:admin_update) if User.where(admin: 'true').count == 1
+    if User.where(admin: 'true').count == 1
+      redirect_to admin_users_path, notice: User.human_attribute_name(:admin_update)
+    end
   end
 end

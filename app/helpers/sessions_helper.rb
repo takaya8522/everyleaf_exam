@@ -16,4 +16,8 @@ module SessionsHelper
     user_id == current_user.id
   end
 
+  def admin_user?
+    "あり" == current_user.admin
+  end
+
 end

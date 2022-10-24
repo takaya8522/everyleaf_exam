@@ -23,7 +23,6 @@ class TasksController < ApplicationController
 
     # ページネーション
     @tasks = @tasks.page(params[:page]).default_order
-
     # 下記はmodelへ記載
     # if params[:search].present?
     #   if params[:search][:status].present? && params[:search][:title].present?
