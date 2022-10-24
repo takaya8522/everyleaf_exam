@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th><%= User.human_attribute_name(:title) %></th>
+      <th><%= User.human_attribute_name(:name) %></th>
       <th><%= User.human_attribute_name(:email) %></th>
       <th><%= User.human_attribute_name(:admin) %></th>
       <th><%= User.human_attribute_name(:tasks_number) %></th>
@@ -13,7 +13,7 @@
   <tbody>
     <% @users.preload(:tasks).each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= user.name  %></td>
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
         <td><%= user.tasks.count %></td>
