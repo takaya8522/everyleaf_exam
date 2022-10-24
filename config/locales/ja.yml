@@ -56,7 +56,7 @@ ja:
         password_confirmation: パスワード（確認）
         login_required: ログインしてください
         logout_required: ログアウトしてください
-        correct_user: アクセス権がありません
+        correct_user: 本人以外アクセスできません
         admin_user: 管理者以外はアクセスできません
         admin_destroy: 管理者権限を持つアカウントが0件になるため削除できません
         admin_update: 管理者権限を持つアカウントが0件になるため更新できません

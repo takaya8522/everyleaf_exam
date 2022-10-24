@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :if_not_admin
-  skip_before_action :login_required, :logout_required
+  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :logout_required
   before_action :destroy_if_only_one_admin, only: [:destroy]
   before_action :update_if_only_one_admin, only: [:update]
 
