@@ -49,7 +49,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def if_not_admin
-    redirect_to tasks_path, notice: User.human_attribute_name(:admin_user) unless current_user.admin == true
+    redirect_to tasks_path, notice: User.human_attribute_name(:admin_user) unless current_user&.admin == true
   end
 
   def user_params
