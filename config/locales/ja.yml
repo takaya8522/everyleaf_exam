@@ -61,13 +61,8 @@ ja:
         admin_user: 管理者以外はアクセスできません
         admin_destroy: 管理者権限を持つアカウントが0件になるため削除できません
         admin_update: 管理者権限を持つアカウントが0件になるため更新できません
-        admin:
-          true: あり
-          false: なし
-      admin:
-        user:
-          true: あり
-          false: なし
+        account_created: アカウントを登録しました
+        account_updated: アカウントを更新しました
   date:
     abbr_day_names:
     - 日

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      redirect_to tasks_path, notice: User.human_attribute_name(:user_updated)
+      redirect_to tasks_path, notice: User.human_attribute_name(:account_created)
     else
       render :new
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(current_user.id), notice: User.human_attribute_name(:user_updated)
+      redirect_to user_path(current_user.id), notice: User.human_attribute_name(:account_updated)
     else
       render :edit
     end
