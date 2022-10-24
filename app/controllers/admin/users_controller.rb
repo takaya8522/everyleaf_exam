@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :if_not_admin, except: [:index]
+  before_action :if_not_admin
   skip_before_action :login_required, :logout_required
   before_action :destroy_if_only_one_admin, only: [:destroy]
   before_action :update_if_only_one_admin, only: [:update]
@@ -48,7 +48,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def if_not_admin
-    redirect_to tasks_path, notice: User.human_attribute_name(:admin_user) unless current_user.admin?
+    redirect_to tasks_path, notice: User.human_attribute_name(:admin_user) unless current_user.admin == "あり"
   end
 
   def user_params
