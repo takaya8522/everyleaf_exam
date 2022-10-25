@@ -1,9 +1,9 @@
 2.times do
-  User.create!(name: "test", email: "test0001@example.com, password_digest: 123456, admin: true")
+  User.create!(name: "adminsさん", email: "adminadmino@piyopiyo.com, password: 123456, password_confirmation: 123456, admin: true")
 end
 
 2.times do
-  User.create!(name: "test1", email: "test0002@example.com, password_digest: 123456, admin: false")
+  User.create!(name: "normalさん", email: "normalnormal@piyopiyo.com, password: 123456, password_confirmation: 123456, admin: false")
 end
 
 50.times do
