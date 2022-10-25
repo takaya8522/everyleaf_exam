@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
+
+  get '*path', to: 'application#render_404'
 end
