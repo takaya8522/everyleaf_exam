@@ -90,7 +90,10 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       it 'ユーザを削除できる' do
         click_link 'ユーザ一覧ページ'
         click_link '削除', match: :first
-        expect(page).to have_content 'アカウントを削除しました'
+        expect{
+          expect(page.accept_confirm).to eq "本当に削除してもよろしいですか？"
+          expect(page).to have_content "ユーザを削除しました"
+          }
       end
     end
 
