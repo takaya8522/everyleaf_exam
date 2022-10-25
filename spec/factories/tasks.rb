@@ -9,6 +9,7 @@ FactoryBot.define do
     deadline_on { '2025/02/18' }
     priority { 1 }
     status { 0 }
+    user_id { 1 }
   end
   # 作成するテストデータの名前を「second_task」とします
   # 「second_task」のように存在しないクラス名をつける場合、`class`オプションを使ってどのクラスのテストデータを作成するかを明示する必要がります
@@ -19,6 +20,7 @@ FactoryBot.define do
     deadline_on { '2025/02/18' }
     priority { 1 }
     status { 0 }
+    user_id {  }
   end
 
   factory :second_task, class: Task do
@@ -28,6 +30,7 @@ FactoryBot.define do
     deadline_on { '2025/02/17' }
     priority { 2 }
     status { 1 }
+    user_id {  }
   end
 
   factory :third_task, class: Task do
@@ -37,5 +40,6 @@ FactoryBot.define do
     deadline_on { '2025/02/16' }
     priority { 0 }
     status { 2 }
+    user_id {  }
   end
 end
