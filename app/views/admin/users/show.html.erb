@@ -1,5 +1,4 @@
 <h1>ユーザ詳細ページ</h1>
-
 <p>
   <strong><%= User.human_attribute_name(:name) %>:</strong>
   <%= @user.name %>
@@ -16,7 +15,6 @@
     <%= "なし" %>
   <% end %>
 </p>
-
 <table>
   <thead>
     <tr>
@@ -28,7 +26,6 @@
       <th><%= Task.human_attribute_name(:status) %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
@@ -42,5 +39,4 @@
     <% end %>
   </tbody>
 </table>
-
 <%= link_to Task.human_attribute_name(:back), admin_users_path, id: 'back' %>
