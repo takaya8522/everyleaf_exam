@@ -1,0 +1,30 @@
+<h1><%= User.human_attribute_name(:users_index) %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= User.human_attribute_name(:administration) %></th>
+      <th><%= User.human_attribute_name(:tasks_number) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.preload(:tasks).each do |user| %>
+      <tr>
+        <td><%= user.name  %></td>
+        <td><%= user.email %></td>
+        <% if user.admin == true  %>
+          <td><%= "あり" %></td>
+        <% else %>
+          <td><%= "なし" %></td>
+        <% end %>
+        <td><%= user.tasks.count %></td>
+        <td><%= link_to User.human_attribute_name(:show), admin_user_path(user) ,class: 'show-user' %></td>
+        <td><%= link_to User.human_attribute_name(:edit), edit_admin_user_path(user),class: 'edit-user' %></td>
+        <td><%= link_to User.human_attribute_name(:destroy), admin_user_path(user) , class: 'destroy-user', method: :delete, data: { confirm: User.human_attribute_name(:are_you_sure?) } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

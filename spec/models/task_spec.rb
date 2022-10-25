@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'タスクモデル機能', type: :model do
+  let!(:admin_user) { FactoryBot.create(:admin_user) }
+  before do
+    @current_user = User.find_by(email: "adminadmino@piyopiyo.com")
+  end
+
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空文字の場合' do
       it 'バリデーションに失敗する' do
@@ -8,7 +13,8 @@ RSpec.describe 'タスクモデル機能', type: :model do
           updated_at: '2025/02/19',
           deadline_on: '2025/02/19',
           priority: 1,
-          status: 1)
+          status: 1,
+          user_id: @current_user.id)
         expect(task).not_to be_valid
       end
     end
@@ -19,7 +25,8 @@ RSpec.describe 'タスクモデル機能', type: :model do
           updated_at: '2025/02/19',
           deadline_on: '2025/02/19',
           priority: 1,
-          status: 1)
+          status: 1,
+          user_id: @current_user.id)
         expect(task).not_to be_valid
       end
     end
@@ -30,16 +37,17 @@ RSpec.describe 'タスクモデル機能', type: :model do
           updated_at: '2025/02/19',
           deadline_on: '2025/02/19',
           priority: 1,
-          status: 1)
+          status: 1,
+          user_id: @current_user.id)
         expect(task).to be_valid
       end
     end
   end
 
   describe '検索機能' do
-    let!(:first_task) { FactoryBot.create(:first_task, title: 'first_task_title') }
-    let!(:second_task) { FactoryBot.create(:second_task, title: 'second_task_title') }
-    let!(:third_task) { FactoryBot.create(:third_task, title: 'third_task_title') }
+    let!(:first_task) { FactoryBot.create(:first_task, title: 'first_task_title', user_id: @current_user.id) }
+    let!(:second_task) { FactoryBot.create(:second_task, title: 'second_task_title', user_id: @current_user.id) }
+    let!(:third_task) { FactoryBot.create(:third_task, title: 'third_task_title', user_id: @current_user.id) }
     
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it '検索ワードを含むタスクが絞り込まれる' do
