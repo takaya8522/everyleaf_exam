@@ -1,4 +1,4 @@
-<h1><%= Task.human_attribute_name(:new_task) %></h1>
+<h1><%= t('.New Task') %></h1>
 <% if @task.errors.any? %>
   <div>
     <h2><%= @task.errors.count %>件のエラーが発生しました</h2>
@@ -37,8 +37,8 @@
   </div>
 
   <div>
-    <%= form.submit Task.human_attribute_name(:create_task),id: 'create-task' %>
+    <%= form.submit t('.create_task'),id: 'create-task' %>
   </div>
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), tasks_path ,id: 'back' %>
+<%= link_to t('.back'), tasks_path ,id: 'back' %>

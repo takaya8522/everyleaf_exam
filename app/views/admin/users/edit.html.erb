@@ -1,4 +1,4 @@
-<h1>ユーザ編集ページ</h1>
+<h1><%= t('.edit_user_page') %></h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>エラーが<%= pluralize(@user.errors.count, "件") %>発生しました</h2>
@@ -12,28 +12,28 @@
 
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
   <div>
-    <%= f.label :name, :名前  %><br>
+    <%= f.label :name, t('.name')  %><br>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :email, :メールアドレス %><br>
+    <%= f.label :email, t('.email') %><br>
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.label :password, :パスワード %><br>
+    <%= f.label :password, t('.password') %><br>
     <%= f.password_field :password %>
   </div>
   <div>
-    <%= f.label :password_confirmation, :パスワード（確認） %><br>
+    <%= f.label :password_confirmation, t('.password_confirmation') %><br>
     <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= f.label :admin, :管理者権限 %><br>
+    <%= f.label :admin, t('.admin') %><br>
     <%= f.check_box :admin, {}, "true", "false" %>
   </div>
   <div>
-    <%= f.submit "更新する", id: 'update-user' %>
+    <%= f.submit t('.update'), id: 'update-user' %>
   </div>
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), admin_users_path ,id: 'back' %>
+<%= link_to t('.back'), admin_users_path ,id: 'back' %>

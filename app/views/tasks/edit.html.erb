@@ -1,4 +1,4 @@
-<h1><%= Task.human_attribute_name(:edit_task) %></h1>
+<h1><%= t('.edit_task') %></h1>
 
 <%= form_with(model: @task, local: true) do |form| %>
   <% if @task.errors.any? %>
@@ -39,9 +39,9 @@
   </div>
 
   <div>
-    <%= form.submit Task.human_attribute_name(:update_task),id: 'update-task' %>
+    <%= form.submit t('.update_task'),id: 'update-task' %>
   </div>
 
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), tasks_path ,id: 'back' %>
+<%= link_to t('.back'), tasks_path ,id: 'back' %>

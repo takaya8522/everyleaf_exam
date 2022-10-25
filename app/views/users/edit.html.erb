@@ -1,4 +1,4 @@
-<h1>アカウント編集ページ</h1>
+<h1><%= t('.edit_page') %></h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>エラーが<%= pluralize(@user.errors.count, "件") %>件発生しました</h2>
@@ -32,4 +32,4 @@
   </div>
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), user_path(current_user.id) ,id: 'back' %>
+<%= link_to t('.back'), user_path(current_user.id) ,id: 'back' %>
