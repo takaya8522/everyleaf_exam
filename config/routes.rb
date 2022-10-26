@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :create, :new, :edit, :show, :update, :destroy]
   end
-  resources :labels, only: [:index, :create, :new, :edit, :show, :update, :destroy]
+  resources :labels, only: [:index, :create, :new, :edit, :update, :destroy]
+
+  # エラー画面用
   get '*path', to: 'application#render_404'
 end

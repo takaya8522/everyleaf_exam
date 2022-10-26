@@ -1,2 +1,26 @@
-<h1>Labels#edit</h1>
-<p>Find me in app/views/labels/edit.html.erb</p>
+<h1><%= t('.edit_label_page') %></h1>
+
+<%= form_with(model: @label, local: true) do |f| %>
+  <% if @label.errors.any? %>
+    <div>
+      <h2><%= @label.errors.count %>件のエラーが発生しました</h2>
+      <ul>
+        <% @label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<%= link_to t('.back'), labels_path ,id: 'back' %>

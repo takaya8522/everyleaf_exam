@@ -1,0 +1,20 @@
+<h1><%= t('.labels_index_page') %></h1>
+<table>
+  <thead>
+    <tr>
+      <th><%= t('.name') %></th>
+      <th><%= t('.tasks_number') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @labels.each do |label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <td><%= label.name %></td>
+        <td><%= link_to t('.edit'), edit_label_path(label),class: 'edit-label' %></td>
+        <td><%= link_to t('.destroy'), label , class: 'destroy-label', method: :delete, data: { confirm: t('.are_you_sure?') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
