@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :login_required, :logout_required
 
+  # エラー画面編集用
   protect_from_forgery with: :exception
-
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::RoutingError, with: :render_404
   rescue_from Exception, with: :render_500
 
+  # エラー画面編集用
   def render_404(exception = nil)
     if exception
       logger.info "Rendering 404 with exception: #{exception.message}"
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
     render template: "errors/error_404", status: 404, layout: 'application', layout: false
   end
 
+  # エラー画面編集用
   def render_500(exception = nil)
     if exception
       logger.info "Rendering 500 with exception: #{exception.message}"
