@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :label_tasks
+  has_many :labels, through: :label_tasks
 
   validates :title, presence: true
   validates :content, presence: true
@@ -21,4 +23,7 @@ class Task < ApplicationRecord
   scope :search_title, ->(title) {
     return if title.blank?
     where('title LIKE ?',"%#{title}%") }
+  scope :search_label, ->(label) {
+    return if label.blank?
+    where(id: LabelTask.where(label_id: label).pluck(:task_id))}
 end

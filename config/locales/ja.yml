@@ -25,10 +25,12 @@ ja:
       edit: '編集'
       destroy: '削除'
       are_you_sure?: '本当に削除してもよろしいですか?'
+      label: ラベル
     new:
       New Task: 'タスク登録ページ'
       create_task: '登録する'
       back: '戻る'
+      label: ラベル
     show:
       show_task: 'タスク詳細ページ'
       title: 'タイトル'
@@ -39,10 +41,12 @@ ja:
       priority: '優先度'
       status: 'ステータス'
       back: '戻る'
+      label: ラベル
     edit:
       edit_task: 'タスク編集ページ'
       update_task: '更新する'
       back: '戻る'
+      label: ラベル
   users:
     new:
       Sign up: "アカウント登録ページ"
@@ -131,6 +135,7 @@ ja:
       back: '戻る'
     edit:
       edit_label_page: 'ラベル編集ページ'
+
   activerecord:
     errors:
       messages:
@@ -153,6 +158,7 @@ ja:
         deadline_on:  終了期限
         priority: 優先度
         status: ステータス
+        label: ラベル
       user:
         title: タイトル
         email: メールアドレス
@@ -179,11 +185,13 @@ ja:
         label_created: ラベルを作成しました
         label_updated: ラベルを更新しました
         label_destroyed: ラベルを削除しました
+        label_ids: ラベル
   helpers:
     submit:
       create: 登録する
       update: 更新する
       submit: 保存する     
+
   date:
     abbr_day_names:
     - 日
@@ -289,13 +297,6 @@ ja:
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
-  helpers:
-    select:
-      prompt: 選択してください
-    submit:
-      create: 登録する
-      submit: 保存する
-      update: 更新する
   number:
     currency:
       format:

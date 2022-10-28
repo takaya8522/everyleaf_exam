@@ -19,6 +19,7 @@ class TasksController < ApplicationController
       @tasks = @tasks
         .search_status(params[:search][:status])
         .search_title(params[:search][:title])
+        .search_label(params[:search][:label_id])
     end
 
     # ページネーション
@@ -43,6 +44,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save
+      @task.labels << Label.find(params[:task][:label_ids])
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_created)
     else
       render :new
@@ -57,6 +59,11 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
+      if params[:task][:label_ids].present?
+        @task.labels << Label.find(params[:task][:label_ids])
+      else
+        @task.labels.clear
+      end
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_updated)
     else
       render :edit
@@ -75,7 +82,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+      params.require(:task).permit(:title, :content, :deadline_on, :priority, :status, :label_ids)
     end
 
     def correct_user

@@ -10,6 +10,10 @@
     <%= form.text_field :title %>
   </div>
   <div>
+    <%= form.label t('.label') %>
+    <%= form.select :label_id, Label.pluck(:name, :id), include_blank: "" %>
+  </div>
+  <div>
     <%= form.submit t('.search'),id: 'search_task' %>
   </div>
 <% end %>

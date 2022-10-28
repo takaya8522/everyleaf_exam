@@ -30,5 +30,12 @@
   <%= @task.status %>
 </p>
 
+<p>
+  <strong><%= t('.label') %>:</strong>
+  <% @task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
+
 <%= link_to t('.edit'), edit_task_path(@task), id: 'edit-task' %> |
 <%= link_to t('.back'), tasks_path, id: 'back' %>
