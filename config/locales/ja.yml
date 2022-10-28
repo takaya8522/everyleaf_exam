@@ -135,6 +135,7 @@ ja:
       back: '戻る'
     edit:
       edit_label_page: 'ラベル編集ページ'
+      back: '戻る'
 
   activerecord:
     errors:
