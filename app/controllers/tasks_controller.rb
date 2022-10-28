@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:show, :edit]
 
   def index
-    @tasks = current_user.tasks
+    @tasks = @current_user.tasks
 
     # 終了期限/優先度ソート機能
     if params[:sort_deadline_on]
@@ -44,7 +44,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save
-      @task.labels << Label.find(params[:task][:label_ids])
+      # @label = LabelTask.new(label_id: params[:task][:label_ids].first, task_id: @task.id)
+      @task.labels.push(Label.find(params[:task][:label_ids]))
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_created)
     else
       render :new
@@ -60,9 +61,9 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       if params[:task][:label_ids].present?
-        @task.labels << Label.find(params[:task][:label_ids])
+        @task.labels.push(Label.find(params[:task][:label_ids]))
       else
-        @task.labels.clear
+        @task.labels.destroy
       end
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_updated)
     else

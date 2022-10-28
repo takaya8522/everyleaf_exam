@@ -4,7 +4,7 @@ class LabelsController < ApplicationController
   skip_before_action :logout_required
 
   def index
-    @labels = Label.all
+    @labels = @current_user.labels
   end
 
   def new
@@ -13,6 +13,7 @@ class LabelsController < ApplicationController
 
   def create
     @label = Label.new(label_params)
+    @label.user_id = current_user.id
     if @label.save
       redirect_to labels_path, notice: Label.human_attribute_name(:label_created)
     else
