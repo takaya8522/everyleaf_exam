@@ -1,24 +1,20 @@
 <h1><%= t('.tasks_index_page') %></h1>
 
 <%= form_with(scope: :search, method: :get, local: true) do |form| %>
-  <div>
+  <div class="form-inline">
     <%= form.label t('.status') %>
     <%= form.select :status, Task.statuses.keys, include_blank: "" %>
-  </div>
-  <div>
     <%= form.label t('.title') %>
     <%= form.text_field :title %>
-  </div>
-  <div>
     <%= form.label t('.label') %>
-    <%= form.select :label_id, Label.pluck(:name, :id), include_blank: "" %>
+    <%= form.select :label_id, Label.pluck(:name, :id), include_blank: "", id: "search_label" %>
   </div>
   <div>
-    <%= form.submit t('.search'),id: 'search_task' %>
+    <%= form.submit t('.search'),id: 'search_task' , class: "btn btn-info" %>
   </div>
 <% end %>
 
-<table>
+<table class="table-striped">
   <thead>
     <tr>
       <th><%= t('.title') %></th>
@@ -41,7 +37,7 @@
         <td><%= task.status %></td>
         <td><%= link_to t('.show'), task ,class: 'show-task btn btn-info' %></td>
         <td><%= link_to t('.edit'), edit_task_path(task),class: 'edit-task btn btn-info' %></td>
-        <td><%= link_to t('.destroy'), task , class: 'destroy-task btn btn-info', method: :delete, data: { confirm: Task.human_attribute_name(:are_you_sure?) } %></td>
+        <td><%= link_to t('.destroy'), task , class: 'destroy-task btn btn-danger', method: :delete, data: { confirm: Task.human_attribute_name(:are_you_sure?) } %></td>
       </tr>
     <% end %>
   </tbody>

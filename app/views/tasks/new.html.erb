@@ -13,30 +13,30 @@
 <%= form_with(model: @task, local: true) do |form| %>
   <div>
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control", class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :content %><br>
-    <%= form.text_area :content %>
+    <%= form.text_area :content , class: "form-control", class: "form-control"  %>
   </div>
 
   <div>
     <%= form.label :deadline_on %><br>
-    <%= form.date_field :deadline_on %>
+    <%= form.date_field :deadline_on, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :priority %><br>
-    <%= form.select :priority, Task.priorities.keys, include_blank: "" %>
+    <%= form.select :priority, Task.priorities.keys, include_blank: "", class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :status %><br>
-    <%= form.select :status, Task.statuses.keys, include_blank: "" %>
+    <%= form.select :status, Task.statuses.keys, include_blank: "", class: "form-control"  %>
   </div>
   
-  <div>
+  <div class="checkbox">
     <%= form.label :label %><br>
     <% Label.all.each do |label| %>
       <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
@@ -45,8 +45,8 @@
   </div>
 
   <div>
-    <%= form.submit id: 'create-task' %>
+    <%= form.submit id: 'create-task', class: "btn btn-info" %>
   </div>
 <% end %>
 
-<%= link_to t('.back'), tasks_path ,id: 'back', class: "btn btn-info" %>
+<%= link_to t('.back'), tasks_path ,id: 'back' %>

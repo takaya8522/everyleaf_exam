@@ -13,27 +13,27 @@
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
   <div>
     <%= f.label :name, t('.name')  %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div>
     <%= f.label :email, t('.email') %><br>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
   <div>
     <%= f.label :password, t('.password') %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
   <div>
     <%= f.label :password_confirmation, t('.password_confirmation') %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <div>
+  <div class="checkbox">
     <%= f.label :admin, t('.admin') %><br>
     <%= f.check_box :admin ,{}, true, false %>
   </div>
   <div>
-    <%= f.submit id: 'create-user' %>
+    <%= f.submit id: 'create-user', class: "btn btn-info" %>
   </div>
 <% end %>
 
-<%= link_to t('.back'), admin_users_path ,id: 'back', class: "btn btn-info" %>
+<%= link_to t('.back'), admin_users_path ,id: 'back' %>

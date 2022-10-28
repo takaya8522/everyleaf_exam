@@ -1,4 +1,4 @@
-<h1><%= t('.Show_user_page') %></h1>
+<h1><%= t('.show_user_page') %></h1>
 <p>
   <strong><%= t('.name') %>:</strong>
   <%= @user.name %>
@@ -15,7 +15,7 @@
     <%= "なし" %>
   <% end %>
 </p>
-<table>
+<table class="table-striped">
   <thead>
     <tr>
       <th><%= t('.title') %></th>
@@ -39,4 +39,4 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to t('.back'), admin_users_path, id: 'back', class: "btn btn-info" %>
+<%= link_to t('.back'), admin_users_path, id: 'back' %>

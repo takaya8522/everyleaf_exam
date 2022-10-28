@@ -42,4 +42,15 @@ FactoryBot.define do
     status { 2 }
     user_id {  }
   end
+
+  factory :association_task, class: Task do
+    title { 'メール送信' }
+    content { '顧客へ営業のメールを送る。' }
+    created_at { '2025/02/16' }
+    deadline_on { '2025/02/16' }
+    priority { 0 }
+    status { 2 }
+    user_id {  }
+    association :label
+  end
 end

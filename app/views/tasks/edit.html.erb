@@ -38,7 +38,7 @@
     <%= form.select :status, Task.statuses.keys, include_blank: "" %>
   </div>
 
-  <div>
+  <div class="checkbox">
     <%= form.label :label %><br>
     <% Label.all.each do |label| %>
       <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
@@ -47,9 +47,9 @@
   </div>
 
   <div>
-    <%= form.submit id: 'update-task' %>
+    <%= form.submit id: 'update-task', class: "btn btn-info" %>
   </div>
 
 <% end %>
 
-<%= link_to t('.back'), tasks_path ,id: 'back', class: "btn btn-info" %>
+<%= link_to t('.back'), tasks_path ,id: 'back' %>

@@ -1,54 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>CdpWebManyoTask</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
+      <div class="alert"><%= content_tag(:div, value, class: "#{key}") %></div>
     <% end %>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a><%= link_to "TskApp", tasks_path , id: "tasks-index", class: "navbar-brand" %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Pricing</a>
-          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <div class="navbar-nav ml-auto">
+          <% if logged_in? && admin_user? %>
+            <a><%= link_to t('.users_index'), admin_users_path , id: "users-index", class: "nav-item nav-link active " %><span class="sr-only">(current)</span></a>
+            <a><%= link_to t('.add_user'), new_admin_user_path , id: "new-user", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.label_index'), labels_path , id: "labels-index", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.add_label'), new_label_path , id: "new-label", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "nav-item nav-link" %></a>
+          <% elsif logged_in? %>
+            <a><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "nav-item nav-link active" %><span class="sr-only">(current)</span></a>
+            <a><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "nav-item nav-link" %></a>
+          <% else %>
+            <a><%= link_to t('.sign_up'), new_user_path, id: "sign-up", class: "nav-item nav-link active" %><span class="sr-only">(current)</span></a>
+            <a><%= link_to t('.sign_in'), new_session_path, id: "sign-in", class: "nav-item nav-link" %></a>
+          <% end %>
         </div>
       </div>
     </nav>
-
-    <% if logged_in? && admin_user? %>
-      <li><%= link_to t('.users_index'), admin_users_path , id: "users-index", class: "btn btn-info" %></li>
-      <li><%= link_to t('.add_user'), new_admin_user_path , id: "new-user", class: "btn btn-info" %></li>
-      <li><%= link_to t('.label_index'), labels_path , id: "labels-index", class: "btn btn-info" %></li>
-      <li><%= link_to t('.add_label'), new_label_path , id: "new-label", class: "btn btn-info" %></li>
-      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "btn btn-info" %></li>
-      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "btn btn-info" %></li>
-      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "btn btn-info" %></li>
-      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "btn btn-info" %></li>
-    <% elsif logged_in? %>
-      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "btn btn-info" %></li>
-      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "btn btn-info" %></li>
-      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "btn btn-info" %></li>
-      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "btn btn-info" %></li>
-    <% else %>
-      <li><%= link_to t('.sign_up'), new_user_path, id: "sign-up", class: "btn btn-info" %></li>
-      <li><%= link_to t('.sign_in'), new_session_path, id: "sign-in", class: "btn btn-info" %></li>
-    <% end %>
     <div class='container'>
       <%= yield %>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>

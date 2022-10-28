@@ -1,6 +1,6 @@
 <h1><%= t('.users_index_page') %></h1>
 
-<table>
+<table class="table-striped">
   <thead>
     <tr>
       <th><%= t('.name') %></th>
@@ -23,7 +23,7 @@
         <td><%= user.tasks.count %></td>
         <td><%= link_to t('.show_user'), admin_user_path(user) ,class: 'show-user', class: "btn btn-info" %></td>
         <td><%= link_to t('.edit_user'), edit_admin_user_path(user),class: 'edit-user', class: "btn btn-info" %></td>
-        <td><%= link_to t('.destroy_user'), admin_user_path(user) , class: 'destroy-user', method: :delete, data: { confirm: t('.are_you_sure?') }, class: "btn btn-info" %></td>
+        <td><%= link_to t('.destroy_user'), admin_user_path(user) , class: 'destroy-user', method: :delete, data: { confirm: t('.are_you_sure?') }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
