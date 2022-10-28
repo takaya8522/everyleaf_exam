@@ -46,7 +46,6 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
       
       it 'ログアウトするとログイン画面に遷移し、「ログアウトしました」というメッセージが表示される' do
-        find(".navbar-toggler").click
         find("#sign-out").click
         expect(page).to have_content 'ログアウトしました'
       end
@@ -67,33 +66,28 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
 
       it 'ユーザ一覧画面にアクセスできる' do
-        find(".navbar-toggler").click
         find("#users-index").click
         expect(page).to have_content 'ユーザ一覧ページ'
       end
 
       it '管理者を登録できる' do
-        find(".navbar-toggler").click
         find("#new-user").click
         expect(page).to have_content 'ユーザ登録ページ'
       end
 
       it 'ユーザ詳細画面にアクセスできる' do
-        find(".navbar-toggler").click
         find("#users-index").click
         click_link '詳細', match: :first
-        expect(page).to have_content 'ユーザ詳細ページ'
+        expect(page).to have_content 'アカウント詳細ページ'
       end
 
       it 'ユーザ編集画面から、自分以外のユーザを編集できる' do
-        find(".navbar-toggler").click
         find("#users-index").click
         click_link '編集', match: :first
         expect(page).to have_content 'ユーザ編集ページ'
       end
 
       it 'ユーザを削除できる' do
-        find(".navbar-toggler").click
         find("#users-index").click
         click_link '削除', match: :first
         expect{
