@@ -14,24 +14,41 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#">Features</a>
+          <a class="nav-item nav-link" href="#">Pricing</a>
+          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        </div>
+      </div>
+    </nav>
+
     <% if logged_in? && admin_user? %>
-      <li><%= link_to t('.users_index'), admin_users_path , id: "users-index" %></li>
-      <li><%= link_to t('.add_user'), new_admin_user_path , id: "new-user" %></li>
-      <li><%= link_to t('.label_index'), labels_path , id: "labels-index" %></li>
-      <li><%= link_to t('.add_label'), new_label_path , id: "new-label" %></li>
-      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index" %></li>
-      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task" %></li>
-      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account" %></li>
-      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li>
+      <li><%= link_to t('.users_index'), admin_users_path , id: "users-index", class: "btn btn-info" %></li>
+      <li><%= link_to t('.add_user'), new_admin_user_path , id: "new-user", class: "btn btn-info" %></li>
+      <li><%= link_to t('.label_index'), labels_path , id: "labels-index", class: "btn btn-info" %></li>
+      <li><%= link_to t('.add_label'), new_label_path , id: "new-label", class: "btn btn-info" %></li>
+      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "btn btn-info" %></li>
+      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "btn btn-info" %></li>
+      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "btn btn-info" %></li>
+      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "btn btn-info" %></li>
     <% elsif logged_in? %>
-      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index"%></li>
-      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task"%></li>
-      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account" %></li>
-      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li>
+      <li><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "btn btn-info" %></li>
+      <li><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "btn btn-info" %></li>
+      <li><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "btn btn-info" %></li>
+      <li><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "btn btn-info" %></li>
     <% else %>
-      <li><%= link_to t('.sign_up'), new_user_path, id: "sign-up" %></li>
-      <li><%= link_to t('.sign_in'), new_session_path, id: "sign-in" %></li>
+      <li><%= link_to t('.sign_up'), new_user_path, id: "sign-up", class: "btn btn-info" %></li>
+      <li><%= link_to t('.sign_in'), new_session_path, id: "sign-in", class: "btn btn-info" %></li>
     <% end %>
-    <%= yield %>
+    <div class='container'>
+      <%= yield %>
+    </div>
   </body>
 </html>

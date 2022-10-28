@@ -24,8 +24,8 @@
       <th><%= t('.title') %></th>
       <th><%= t('.content') %></th>
       <th><%= t('.created_at') %></th>
-      <th><%= link_to t('.deadline_on'), sort_deadline_on: true %></th>
-      <th><%= link_to t('.priority'), sort_priority: true %></th>
+      <th><%= link_to t('.deadline_on'), sort_deadline_on: true, class: "btn btn-info" %></th>
+      <th><%= link_to t('.priority'), sort_priority: true, class: "btn btn-info" %></th>
       <th><%= t('.status') %></th>
     </tr>
   </thead>
@@ -39,9 +39,9 @@
         <td><%= task.deadline_on.strftime('%Y/%m/%d') %></td>
         <td><%= task.priority %></td>
         <td><%= task.status %></td>
-        <td><%= link_to t('.show'), task ,class: 'show-task' %></td>
-        <td><%= link_to t('.edit'), edit_task_path(task),class: 'edit-task' %></td>
-        <td><%= link_to t('.destroy'), task , class: 'destroy-task', method: :delete, data: { confirm: Task.human_attribute_name(:are_you_sure?) } %></td>
+        <td><%= link_to t('.show'), task ,class: 'show-task btn btn-info' %></td>
+        <td><%= link_to t('.edit'), edit_task_path(task),class: 'edit-task btn btn-info' %></td>
+        <td><%= link_to t('.destroy'), task , class: 'destroy-task btn btn-info', method: :delete, data: { confirm: Task.human_attribute_name(:are_you_sure?) } %></td>
       </tr>
     <% end %>
   </tbody>

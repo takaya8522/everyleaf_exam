@@ -63,7 +63,7 @@ class TasksController < ApplicationController
       if params[:task][:label_ids].present?
         @task.labels.push(Label.find(params[:task][:label_ids]))
       else
-        @task.labels.destroy
+        @task.labels.destroy_all
       end
       redirect_to tasks_path, notice: Task.human_attribute_name(:task_updated)
     else
