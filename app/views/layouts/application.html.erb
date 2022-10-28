@@ -29,6 +29,8 @@
             <a><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "nav-item nav-link" %></a>
             <a><%= link_to t('.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "nav-item nav-link" %></a>
           <% elsif logged_in? %>
+            <a><%= link_to t('.label_index'), labels_path , id: "labels-index", class: "nav-item nav-link" %></a>
+            <a><%= link_to t('.add_label'), new_label_path , id: "new-label", class: "nav-item nav-link" %></a>
             <a><%= link_to t('.tasks_index_nav'), tasks_path , id: "tasks-index", class: "nav-item nav-link active" %><span class="sr-only">(current)</span></a>
             <a><%= link_to t('.new_task_nav'), new_task_path , id: "new-task", class: "nav-item nav-link" %></a>
             <a><%= link_to t('.my_account'), user_path(current_user.id), id: "my-account", class: "nav-item nav-link" %></a>

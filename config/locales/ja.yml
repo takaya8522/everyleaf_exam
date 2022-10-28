@@ -182,7 +182,7 @@ ja:
       label:
         name: 名前
         title: タイトル
-        label_created: ラベルを作成しました
+        label_created: ラベルを登録しました
         label_updated: ラベルを更新しました
         label_destroyed: ラベルを削除しました
         label_ids: ラベル
