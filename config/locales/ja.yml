@@ -160,6 +160,7 @@ ja:
         priority: 優先度
         status: ステータス
         label: ラベル
+        label_name: ラベル
       user:
         title: タイトル
         email: メールアドレス

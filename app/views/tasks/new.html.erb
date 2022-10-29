@@ -36,11 +36,11 @@
     <%= form.select :status, Task.statuses.keys, include_blank: "", class: "form-control"  %>
   </div>
   
-  <div class="checkbox">
-    <%= form.label :label %><br>
-    <% Label.all.each do |label| %>
+  <div>
+    <%= form.label :label_name %><br>
+    <% @labels.each do |label| %>
       <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
-      <%= label.name %>
+      <%= label.name  %>
     <% end %>
   </div>
 
