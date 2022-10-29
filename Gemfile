@@ -62,3 +62,4 @@ end
 
 gem 'kaminari'
 gem 'bcrypt'
+gem 'bootstrap4-kaminari-views'

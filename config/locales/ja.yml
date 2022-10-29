@@ -128,6 +128,13 @@ ja:
         admin: "管理者権限"
         back: '戻る'
         update: '更新する'
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
   labels:
     index:
       labels_index_page: 'ラベル一覧ページ'
