@@ -25,5 +25,6 @@ class Task < ApplicationRecord
     where('title LIKE ?',"%#{title}%") }
   scope :search_label, ->(label) {
     return if label.blank?
-    where(id: LabelTask.where(label_id: label).pluck(:task_id))}
+    # pluckよりselect(副問合せ)を使った方がSQL文が一行で済むので稼働コストが良い
+    where(id: LabelTask.where(label_id: label).select(:task_id))}
 end
