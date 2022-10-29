@@ -47,6 +47,12 @@ ja:
       update_task: '更新する'
       back: '戻る'
       label: ラベル
+    create:
+      task_created: タスクを登録しました
+    update:
+      task_updated: タスクを更新しました
+    destroy:
+      task_destroyed: タスクを削除しました
   users:
     new:
       Sign up: "アカウント登録ページ"
@@ -153,9 +159,6 @@ ja:
         title: タイトル
         content: 内容
         created_at: 作成日時
-        task_created: タスクを登録しました
-        task_updated: タスクを更新しました
-        task_destroyed: タスクを削除しました
         deadline_on:  終了期限
         priority: 優先度
         status: ステータス

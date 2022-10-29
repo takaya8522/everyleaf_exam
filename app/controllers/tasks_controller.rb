@@ -24,6 +24,7 @@ class TasksController < ApplicationController
 
     # ページネーション
     @tasks = @tasks.page(params[:page]).default_order
+    
     # 下記はmodelへ記載
     # if params[:search].present?
     #   if params[:search][:status].present? && params[:search][:title].present?
@@ -44,12 +45,13 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
+    # ラベルをタスクに紐付けするコード
+    if params[:task][:label_ids].present?
+      @task.labels << current_user.labels.where(id: params[:task][:label_ids])
+    end
+
     if @task.save
-      # @label = LabelTask.new(label_id: params[:task][:label_ids].first, task_id: @task.id)
-      if params[:task][:label_ids].present?
-        @task.labels.push(Label.find(params[:task][:label_ids]))
-      end
-      redirect_to tasks_path, notice: Task.human_attribute_name(:task_created)
+      redirect_to tasks_path, notice: t('.task_created')
     else
       render :new
     end
@@ -63,13 +65,14 @@ class TasksController < ApplicationController
   end
 
   def update
+    # タスクに付与されているラベルを更新するコード
+    if params[:task][:label_ids].present?
+      @task.labels.clear
+      @task.labels << current_user.labels.where(id: params[:task][:label_ids])
+    end
+
     if @task.update(task_params)
-      if params[:task][:label_ids].present?
-        @task.labels.push(Label.find(params[:task][:label_ids]))
-      else
-        @task.labels.destroy_all
-      end
-      redirect_to tasks_path, notice: Task.human_attribute_name(:task_updated)
+      redirect_to tasks_path, notice: t('.task_updated')
     else
       render :edit
     end
@@ -77,7 +80,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: Task.human_attribute_name(:task_destroyed)
+    redirect_to tasks_path, notice: t('.task_destroyed')
   end
 
   private
@@ -92,6 +95,6 @@ class TasksController < ApplicationController
 
     def correct_user
       user_id = Task.find(params[:id]).user_id
-      redirect_to tasks_path, notice: User.human_attribute_name(:correct_user)  unless current_user?(user_id)
+      redirect_to tasks_path, notice:  User.human_attribute_name(:correct_user) unless current_user?(user_id)
     end
 end
