@@ -11,6 +11,7 @@
   </thead>
 
   <tbody>
+    <%# preloadはN+1問題のため %>
     <% @users.preload(:tasks).each do |user| %>
       <tr>
         <td><%= user.name  %></td>
@@ -21,9 +22,9 @@
           <td><%= "なし" %></td>
         <% end %>
         <td><%= user.tasks.count %></td>
-        <td><%= link_to t('.show_user'), admin_user_path(user) ,class: 'show-user', class: "btn btn-info" %></td>
-        <td><%= link_to t('.edit_user'), edit_admin_user_path(user),class: 'edit-user', class: "btn btn-info" %></td>
-        <td><%= link_to t('.destroy_user'), admin_user_path(user) , class: 'destroy-user', method: :delete, data: { confirm: t('.are_you_sure?') }, class: "btn btn-danger" %></td>
+        <td><%= link_to t('.show_user'), admin_user_path(user) ,id: "show-user", class: "show-user btn btn-info" %></td>
+        <td><%= link_to t('.edit_user'), edit_admin_user_path(user),class: "edit-user btn btn-info" %></td>
+        <td><%= link_to t('.destroy_user'), admin_user_path(user), method: :delete, data: { confirm: t('.are_you_sure?') }, class: "destroy-user btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

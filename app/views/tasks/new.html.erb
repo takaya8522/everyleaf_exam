@@ -39,7 +39,7 @@
   <div>
     <%= form.label :label_name %><br>
     <% @labels.each do |label| %>
-      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
+      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id], class: 'w' %>
       <%= label.name  %>
     <% end %>
   </div>
