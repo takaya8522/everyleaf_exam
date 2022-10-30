@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :label_tasks, dependent: :destroy
+  has_many :labels, through: :label_tasks
 
   validates :title, presence: true
   validates :content, presence: true
@@ -21,4 +23,8 @@ class Task < ApplicationRecord
   scope :search_title, ->(title) {
     return if title.blank?
     where('title LIKE ?',"%#{title}%") }
+  scope :search_label, ->(label) {
+    return if label.blank?
+    # pluckよりselect(副問合せ)を使った方がSQL文が一行で済むので稼働コストが良い
+    where(id: LabelTask.where(label_id: label).select(:task_id))}
 end

@@ -1,4 +1,4 @@
-<h1>ユーザ登録ページ</h1>
+<h1><%= t('.sign_up_page') %></h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>エラーが<%= pluralize(@user.errors.count, "件") %>発生しました</h2>
@@ -12,28 +12,28 @@
 
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
   <div>
-    <%= f.label :name, :名前  %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name, t('.name')  %><br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div>
-    <%= f.label :email, :メールアドレス %><br>
-    <%= f.email_field :email %>
+    <%= f.label :email, t('.email') %><br>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
   <div>
-    <%= f.label :password, :パスワード %><br>
-    <%= f.password_field :password %>
+    <%= f.label :password, t('.password') %><br>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
   <div>
-    <%= f.label :password_confirmation, :パスワード（確認） %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation, t('.password_confirmation') %><br>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :admin, :管理者権限 %><br>
+  <div class="checkbox">
+    <%= f.label :admin, t('.admin') %><br>
     <%= f.check_box :admin ,{}, true, false %>
   </div>
   <div>
-    <%= f.submit "登録する",id: 'create-user' %>
+    <%= f.submit id: 'create-user', class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), admin_users_path ,id: 'back' %>
+<%= link_to t('.back'), labels_path ,id: 'back' %>

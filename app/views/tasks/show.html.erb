@@ -1,34 +1,41 @@
-<h1><%= Task.human_attribute_name(:show_task) %></h1>
+<h1><%= t('.show_task') %></h1>
 
 <p>
-  <strong><%= Task.human_attribute_name(:title) %>:</strong>
+  <strong><%= t('.title') %>:</strong>
   <%= @task.title %>
 </p>
 
 <p>
-  <strong><%= Task.human_attribute_name(:content) %>:</strong>
+  <strong><%= t('.content') %>:</strong>
   <%= @task.content %>
 </p>
 
 <p>
-  <strong><%= Task.human_attribute_name(:created_at) %>:</strong>
+  <strong><%= t('.created_at') %>:</strong>
   <%= @task.created_at.strftime('%Y/%m/%d %H:%M') %>
 </p>
 
 <p>
-  <strong><%= Task.human_attribute_name(:deadline_on) %>:</strong>
+  <strong><%= t('.deadline_on') %>:</strong>
   <%= @task.deadline_on.strftime('%Y/%m/%d') %>
 </p>
 
 <p>
-  <strong><%= Task.human_attribute_name(:priority) %>:</strong>
+  <strong><%= t('.priority') %>:</strong>
   <%= @task.priority %>
 </p>
 
 <p>
-  <strong><%= Task.human_attribute_name(:status) %>:</strong>
+  <strong><%= t('.status') %>:</strong>
   <%= @task.status %>
 </p>
 
-<%= link_to Task.human_attribute_name(:edit), edit_task_path(@task), id: 'edit-task' %> |
-<%= link_to Task.human_attribute_name(:back), tasks_path, id: 'back' %>
+<p>
+  <strong><%= t('.label') %>:</strong>
+  <% @task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
+
+<%= link_to t('.edit'), edit_task_path(@task), id: 'edit-task', class: "btn btn-info" %><br>
+<%= link_to t('.back'), tasks_path, id: 'back' %>

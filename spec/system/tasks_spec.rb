@@ -135,4 +135,23 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+  describe '検索機能' do
+    let!(:first_label) { FactoryBot.create(:first_label, user_id: @current_user.id) }
+    let!(:first_task) { FactoryBot.create(:first_task, title: 'first_task_title', user_id: @current_user.id) }
+    let!(:label_task) { FactoryBot.create(:label_task, task_id: first_task.id, label_id: first_label.id )}
+    before do
+      visit tasks_path
+    end
+    
+    context 'ラベルで検索をした場合' do
+      it "そのラベルの付いたタスクがすべて表示される" do
+        select 'test1', from: 'search_label_id'
+        find('#search_task').click
+        expect(page).to have_content 'first_task_title'
+        expect(page).not_to have_content 'second_task_title'
+        expect(page).not_to have_content 'third_task_title'
+        # toとnot_toのマッチャを使って表示されるものとされないものの両方を確認する
+      end
+    end
+  end
 end

@@ -1,4 +1,4 @@
-<h1><%= Task.human_attribute_name(:edit_task) %></h1>
+<h1><%= t('.edit_task') %></h1>
 
 <%= form_with(model: @task, local: true) do |form| %>
   <% if @task.errors.any? %>
@@ -23,7 +23,7 @@
     <%= form.text_area :content %>
   </div>
 
-    <div>
+  <div>
     <%= form.label :deadline_on %><br>
     <%= form.date_field :deadline_on %>
   </div>
@@ -39,9 +39,17 @@
   </div>
 
   <div>
-    <%= form.submit Task.human_attribute_name(:update_task),id: 'update-task' %>
+    <%= form.label :label_name %><br>
+    <% @labels.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id], class: 'check_box' %>
+      <%= label.name %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit id: 'update-task', class: "btn btn-primary" %>
   </div>
 
 <% end %>
 
-<%= link_to Task.human_attribute_name(:back), tasks_path ,id: 'back' %>
+<%= link_to t('.back'), tasks_path ,id: 'back' %>

@@ -41,12 +41,12 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
 
       it '他人の詳細画面にアクセスすると、タスク一覧画面に遷移する' do
-        visit user_path(normal_user.id)
+        visit users_path(normal_user.id)
         expect(page).to have_content 'タスク一覧'
       end
       
       it 'ログアウトするとログイン画面に遷移し、「ログアウトしました」というメッセージが表示される' do
-        click_link 'ログアウト'
+        find("#sign-out").click
         expect(page).to have_content 'ログアウトしました'
       end
     end
@@ -66,29 +66,29 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       end
 
       it 'ユーザ一覧画面にアクセスできる' do
-        click_link 'ユーザ一覧ページ'
+        find("#users-index").click
         expect(page).to have_content 'ユーザ一覧ページ'
       end
 
       it '管理者を登録できる' do
-        click_link 'ユーザを登録する'
+        find("#new-user").click
         expect(page).to have_content 'ユーザ登録ページ'
       end
 
       it 'ユーザ詳細画面にアクセスできる' do
-        click_link 'ユーザ一覧ページ'
+        find("#users-index").click
         click_link '詳細', match: :first
         expect(page).to have_content 'アカウント詳細ページ'
       end
 
       it 'ユーザ編集画面から、自分以外のユーザを編集できる' do
-        click_link 'ユーザ一覧ページ'
+        find("#users-index").click
         click_link '編集', match: :first
         expect(page).to have_content 'ユーザ編集ページ'
       end
 
       it 'ユーザを削除できる' do
-        click_link 'ユーザ一覧ページ'
+        find("#users-index").click
         click_link '削除', match: :first
         expect{
           expect(page.accept_confirm).to eq "本当に削除してもよろしいですか？"

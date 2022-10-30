@@ -1,0 +1,23 @@
+<h1><%= t('.new_label_page') %></h1>
+<% if @label.errors.any? %>
+  <div>
+    <h2><%= @label.errors.count %>件のエラーが発生しました</h2>
+    <ul>
+      <% @label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @label, local: true) do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to t('.back'), labels_path ,id: 'back' %>
