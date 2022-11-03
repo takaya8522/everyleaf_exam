@@ -16,11 +16,16 @@
       <tr>
         <td><%= user.name  %></td>
         <td><%= user.email %></td>
-        <% if user.admin == true  %>
-          <td><%= "あり" %></td>
-        <% else %>
-          <td><%= "なし" %></td>
-        <% end %>
+
+        <%# admin? ?の書き方へ変更 %>
+        <%# if user.admin == true  %>
+          <%# <td> "あり" </td> %>
+        <%# else %>
+          <%# <td> "なし" </td> %>
+        <%# end %>
+        
+        <td><%= user.admin? ? 'あり' : 'なし' %></td>
+
         <td><%= user.tasks.count %></td>
         <td><%= link_to t('.show_user'), admin_user_path(user) ,id: "show-user", class: "show-user btn btn-primary" %></td>
         <td><%= link_to t('.edit_user'), edit_admin_user_path(user),class: "edit-user btn btn-primary" %></td>

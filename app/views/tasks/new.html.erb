@@ -38,14 +38,24 @@
   
   <div>
     <%= form.label :label_name %><br>
-    <% @labels.each do |label| %>
-      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id], class: 'check_box label_name' %>
-      <%= label.name %>
+    
+    <%= form.collection_check_boxes(:label_ids, @labels, :id, :name) do |label|%>
+      <div class= "form-check form-check-inline">
+        <%= label.check_box class: "form-check-input" %>
+        <%= label.text %>
+      </div>
     <% end %>
+
+    <%# 下記はcollection_check_boxesに変更 %>
+    <%# <% @labels.each do |label| %>
+      <%#= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id], class: 'check_box label_name' %>
+      <%#= label.name %>
+    <%# end %>
   </div>
 
   <div>
     <%= form.submit id: 'create-task', class: "btn btn-primary" %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
   </div>
 <% end %>
 

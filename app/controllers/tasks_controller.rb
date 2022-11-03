@@ -44,11 +44,14 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.user_id = current_user.id
-    # ラベルをタスクに紐付けするコード
-    if params[:task][:label_ids].present?
-      @task.labels << current_user.labels.where(id: params[:task][:label_ids])
-    end
+
+    # hidden_fieldを使ってパラメーター経由で取得する方法に変更
+    # @task.user_id = current_user.id
+
+    # ラベルをタスクに紐付けするコード→パラメーター経由で取得する方法に変更
+    # if params[:task][:label_ids].present?
+    #   @task.labels << current_user.labels.where(id: params[:task][:label_ids])
+    # end
 
     if @task.save
       redirect_to tasks_path, notice: t('.task_created')
@@ -66,10 +69,10 @@ class TasksController < ApplicationController
 
   def update
     # タスクに付与されているラベルを更新するコード
-    if params[:task][:label_ids].present?
-      @task.labels.clear
-      @task.labels << current_user.labels.where(id: params[:task][:label_ids])
-    end
+    # if params[:task][:label_ids].present?
+    #   @task.labels.clear
+    #   @task.labels << current_user.labels.where(id: params[:task][:label_ids])
+    # end
 
     if @task.update(task_params)
       redirect_to tasks_path, notice: t('.task_updated')
@@ -90,7 +93,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title, :content, :deadline_on, :priority, :status, :label_ids)
+      params.require(:task).permit(:title, :content, :deadline_on, :priority, :status, :user_id,  { label_ids: [] } )
     end
 
     def correct_user
